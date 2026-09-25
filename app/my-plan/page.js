@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+// import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
 import { usePlan } from "@/components/PlanProvider";
 
-export default function MyPlan() {
+function MyPlanContent() {
   const {
     plan,
     saved,
@@ -108,22 +109,20 @@ export default function MyPlan() {
 
           <button
             onClick={() => setActiveTab("plan")}
-            className={`rounded-full px-5 py-2 text-sm font-bold ${
-              activeTab === "plan"
+            className={`rounded-full px-5 py-2 text-sm font-bold ${activeTab === "plan"
                 ? "bg-[#c2f800] text-black"
                 : "border border-gray-700 text-gray-400"
-            }`}
+              }`}
           >
             Today&apos;s Plan
           </button>
 
           <button
             onClick={() => setActiveTab("saved")}
-            className={`rounded-full px-5 py-2 text-sm font-bold ${
-              activeTab === "saved"
+            className={`rounded-full px-5 py-2 text-sm font-bold ${activeTab === "saved"
                 ? "bg-[#c2f800] text-black"
                 : "border border-gray-700 text-gray-400"
-            }`}
+              }`}
           >
             Saved
           </button>
@@ -218,5 +217,13 @@ export default function MyPlan() {
 
       </div>
     </main>
+  );
+}
+
+export default function MyPlan() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-black" />}>
+      <MyPlanContent />
+    </Suspense>
   );
 }
