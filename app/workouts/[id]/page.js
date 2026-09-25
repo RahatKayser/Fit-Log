@@ -5,13 +5,32 @@ import WorkoutActions from "@/components/WorkoutActions";
 export default async function WorkoutDetails({ params }) {
   const { id } = await params;
 
-  const response = await fetch(
-    "https://api.abcz.workers.dev/api/fitlog"
-  );
+  // const response = await fetch(
+  //   "https://api.abcz.workers.dev/api/fitlog"
+  // );
 
-  const workouts = await response.json();
+  // const workouts = await response.json();
 
-  const workout = workouts.find((item) => item.id === Number(id));
+  // const workout = workouts.find((item) => item.id === Number(id));
+
+
+  let workout;
+
+  try {
+    const response = await fetch(
+      "https://api.abcz.workers.dev/api/fitlog"
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch workouts");
+    }
+
+    const workouts = await response.json();
+
+    workout = workouts.find((item) => item.id === Number(id));
+  } catch (error) {
+    console.error("Failed to fetch workout:", error);
+  }
 
   if (!workout) {
     return (
