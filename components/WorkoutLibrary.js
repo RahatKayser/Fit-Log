@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 export default function WorkoutLibrary() {
   const [workouts, setWorkouts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
   const [sortBy, setSortBy] = useState("duration");
 
   useEffect(() => {
@@ -18,6 +19,7 @@ export default function WorkoutLibrary() {
       })
       .catch((error) => {
         console.error("Failed to fetch workouts:", error);
+        setError("Failed to load workouts. Please try again.");
         setLoading(false);
       });
   }, []);
@@ -49,6 +51,16 @@ export default function WorkoutLibrary() {
               Loading workouts...
             </p>
           </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section id="library" className="bg-black px-6 py-20">
+        <div className="mx-auto flex min-h-100 max-w-7xl items-center justify-center">
+          <p className="text-center text-gray-400">{error}</p>
         </div>
       </section>
     );
