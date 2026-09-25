@@ -110,8 +110,8 @@ function MyPlanContent() {
           <button
             onClick={() => setActiveTab("plan")}
             className={`rounded-full px-5 py-2 text-sm font-bold ${activeTab === "plan"
-                ? "bg-[#c2f800] text-black"
-                : "border border-gray-700 text-gray-400"
+              ? "bg-[#c2f800] text-black"
+              : "border border-gray-700 text-gray-400"
               }`}
           >
             Today&apos;s Plan
@@ -120,8 +120,8 @@ function MyPlanContent() {
           <button
             onClick={() => setActiveTab("saved")}
             className={`rounded-full px-5 py-2 text-sm font-bold ${activeTab === "saved"
-                ? "bg-[#c2f800] text-black"
-                : "border border-gray-700 text-gray-400"
+              ? "bg-[#c2f800] text-black"
+              : "border border-gray-700 text-gray-400"
               }`}
           >
             Saved
@@ -197,12 +197,18 @@ function MyPlanContent() {
         {currentWorkouts.length === 0 && (
           <div className="mt-12 rounded-xl border border-gray-800 bg-[#1a1a1a] px-6 py-16 text-center">
 
-            <p className="text-sm font-bold uppercase tracking-[0.2em] text-gray-500">
-              Nothing Here Yet
+            <p className="text-sm font-bold tracking-[0.2em] text-gray-500">
+              NOTHING HERE YET
             </p>
 
-            <p className="mt-4 text-gray-400">
+            {/* <p className="mt-4 text-gray-400">
               Browse the library and add a lift to get today moving.
+            </p> */}
+
+            <p className="mt-4 text-gray-400">
+              {activeTab === "plan"
+                ? "Browse the library and add a lift to get today moving."
+                : "Save workouts from the library to find them here later."}
             </p>
 
             <Link
