@@ -44,3 +44,7 @@ xi.   Loading state while workout data is being fetched
 xii.  Toast notifications for workout actions
 
 
+## Live link:
+
+https://fit-log-sooty.vercel.app/
+
